@@ -115,9 +115,10 @@ class GoogleProvider(BaseProvider):
     def _data_for_MX(self, _type, records):
         values = []
         for r in records:
+            priority, data = r['rrdatas'][0].split(' ')
             values.append({
-                'preference': r['priority'],
-                'exchange': '{}'.format(r['rrdatas'][0]),
+                'preference': priority,
+                'exchange': '{}'.format(data),
             })
         return {
             'ttl': records[0]['ttl'],
